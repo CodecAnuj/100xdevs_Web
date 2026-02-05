@@ -4,6 +4,7 @@
   Output: { a: 5, b: 20, c: 15 }
 */
 
+// solution
 const obj1 = { a: 10, b: 20 };
 const obj2 = { a: 5, c: 15 };
 
