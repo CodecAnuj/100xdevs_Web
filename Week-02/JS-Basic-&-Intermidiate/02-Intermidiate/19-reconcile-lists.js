@@ -14,3 +14,7 @@ const extra = actual.filter((item) => !expected.includes(item));
 const result = { missing, extra };
 
 console.log(result);
+
+// Advanced Version:
+const actualSet = new Set(actual);
+const missing = expected.filter(item => !actualSet.has(item));
