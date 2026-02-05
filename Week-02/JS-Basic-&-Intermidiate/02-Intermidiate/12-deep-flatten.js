@@ -14,6 +14,6 @@ const result = Object.entries(input).reduce((acc, [key, nestedArray]) => {
   acc[key] = nestedArray.flat(Infinity);
 
   return acc;
-});
+}, {});
 
-console.log(result)
+console.log(result);
