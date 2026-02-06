@@ -26,7 +26,18 @@
 */
 
 function isPerfectNumber(num) {
-  // Your code here
+  let sum = 0;
+  // Optimization: Stop at halfway point
+  for (let i = 1; i <= num / 2; i++) {
+    if (num % i == 0) {
+      sum = sum + i;
+    }
+  }
+
+  return (sum === num);
 }
+
+const input = 6;
+console.log(isPerfectNumber(input));
 
 module.exports = { isPerfectNumber };
