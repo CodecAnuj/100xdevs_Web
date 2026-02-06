@@ -16,7 +16,23 @@
 */
 
 function getPrimesUpTo100() {
-  // Your code here
+  const primes = [];
+  for (let num = 2; num < 100; num++) {
+    let isPrime = true;
+    for (let div = 2; div <= Math.sqrt(num); div++) {
+      if (num % div === 0) {
+        isPrime = false;
+        break;
+      }
+    }
+    if (isPrime) {
+      primes.push(num);
+    }
+  }
+
+  return primes;
 }
+
+console.log(getPrimesUpTo100());
 
 module.exports = { getPrimesUpTo100 };
