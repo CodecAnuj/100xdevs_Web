@@ -26,10 +26,25 @@
 */
 
 function countVowels(str) {
-  // Your code here
+  let count = 0;
+  const vowels = "aeiou";
+
+  for (let char of str) {
+    if (vowels.includes(char.toLowerCase())) {
+      count++;
+    }
+  }
+
+  return count;
 }
 
+const input = "hello world";
+
+// Better Approach using (regex)
+// function countVowels(str) {
+//   return (str.match(/[aeiou]/gi) || []).length;
+// }
+
+// console.log(countVowels(input));
+
 module.exports = { countVowels };
-
-
-
