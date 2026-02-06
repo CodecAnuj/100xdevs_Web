@@ -19,7 +19,17 @@
 */
 
 function getUniqueElements(arr) {
-  // Your code here
+  const uniqueArray = [];
+  for (let i = 0; i < arr.length; i++) {
+    if(!uniqueArray.includes(arr[i])) {
+      uniqueArray.push(arr[i])
+    }
+  }
+
+  return uniqueArray;
 }
+
+const input = [10, 20, 30, 10, 40, 20];
+console.log(getUniqueElements(input))
 
 module.exports = getUniqueElements;
