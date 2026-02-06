@@ -19,7 +19,7 @@ function getPrimesUpTo100() {
   const primes = [];
   for (let num = 2; num < 100; num++) {
     let isPrime = true;
-    for (let div = 2; div <= Math.sqrt(num); div++) {
+    for (let div = 2; div <= num/2; div++) {
       if (num % div === 0) {
         isPrime = false;
         break;
