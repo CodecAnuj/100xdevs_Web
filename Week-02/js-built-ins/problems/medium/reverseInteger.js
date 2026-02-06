@@ -25,12 +25,19 @@ function reverseInteger(num) {
   let isNegative = num < 0;
   num = Math.abs(num);
 
-  const reveredString = num.toString().split("").reverse().join("");
-  const result = Number(reveredString);
+  // const reveredString = num.toString().split("").reverse().join("");
+  // const result = Number(reveredString);
 
-  if (isNegative) return -result;
+  // optimized approach
+  let result = 0;
 
-  return result;
+  while (num > 0) {
+    let lastDigit = num % 10;
+    result = result * 10 + lastDigit;
+    num = Math.floor(num / 10);
+  }
+
+  return isNegative ? -result : result;
 }
 
 const input = 123;
