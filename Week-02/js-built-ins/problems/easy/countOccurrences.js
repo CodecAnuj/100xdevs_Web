@@ -18,11 +18,27 @@
   - `npm run test-occurrences`
 */
 
+// function countOccurrences(arr) {
+//   const counts = {};
+//   for (let num of arr) {
+//     counts[num] = (counts[num] || 0) + 1;
+//   }
 
+//   return counts;
+// }
+
+
+// Advanced using reduce
 function countOccurrences(arr) {
-  // Your code here
+  return arr.reduce((acc, num) => {
+    acc[num] = (acc[num] || 0) + 1;
+
+    return acc;
+  }, {});
 }
 
+const input = [10, 20, 10, 30, 20, 20];
+
+console.log(countOccurrences(input));
+
 module.exports = countOccurrences;
-
-
