@@ -21,8 +21,8 @@
 function getUniqueElements(arr) {
   const uniqueArray = [];
   for (let i = 0; i < arr.length; i++) {
-    if(!uniqueArray.includes(arr[i])) {
-      uniqueArray.push(arr[i])
+    if (!uniqueArray.includes(arr[i])) {
+      uniqueArray.push(arr[i]);
     }
   }
 
@@ -30,6 +30,15 @@ function getUniqueElements(arr) {
 }
 
 const input = [10, 20, 30, 10, 40, 20];
-console.log(getUniqueElements(input))
+console.log(getUniqueElements(input));
 
 module.exports = getUniqueElements;
+
+
+
+// better approach using set
+// const numbers = [1, 2, 2, 3, 4, 4];
+
+// const uniqueNumbers = [...new Set(numbers)];
+
+// console.log(uniqueNumbers);
