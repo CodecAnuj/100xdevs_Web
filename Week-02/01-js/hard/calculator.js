@@ -17,6 +17,109 @@
   - `npm run test-calculator`
 */
 
-class Calculator { }
+
+// Better approach
+class Calculator {
+    constructor() {
+        this.result = 0;
+    }
+
+    add(n) {
+        this.result += n;
+    }
+
+    subtract(n) {
+        this.result -= n;
+    }
+
+    multiply(n) {
+        this.result *= n;
+    }
+
+    divide(n) {
+        if (n === 0) throw new Error("Division by zero");
+        this.result /= n;
+    }
+
+    clear() {
+        this.result = 0;
+    }
+
+    getResult() {
+        return this.result;
+    }
+
+    calculate(expr) {
+        // 1️⃣ validate characters (numbers, ops, dot, spaces)
+        if (!/^[0-9+\-*/().\s]+$/.test(expr)) {
+            throw new Error("Invalid characters in expression");
+        }
+
+        // 2️⃣ remove spaces only
+        const sanitized = expr.replace(/\s+/g, "");
+
+        // 3️⃣ evaluate safely
+        let value;
+        try {
+            value = Function(`"use strict";return (${sanitized})`)();
+        } catch {
+            throw new Error("Invalid mathematical expression");
+        }
+
+        // 4️⃣ math sanity check
+        if (!Number.isFinite(value)) {
+            throw new Error("Division by zero");
+        }
+
+        this.result = value;
+        return value;
+    }
+}
+
+// class Calculator {
+//     constructor() {
+//         this.result = 0;
+//     }
+//     add(value) {
+//         this.result = this.result + value;
+//     }
+//     subtract(value) {
+//         this.result = this.result - value;
+//     }
+//     multiply(value) {
+//         this.result = this.result * value;
+//     }
+//     divide(value) {
+//         if (value === 0) {
+//             throw new Error("Zero divide not allowed");
+//         }
+//         this.result = this.result / value;
+//     }
+//     clear() {
+//         this.result = 0;
+//     }
+//     getResult() {
+//         return this.result;
+//     }
+//     calculate(str) {
+//         if (/[^0-9+.\-*/()\s]/.test(str)) {
+//             throw new Error("Invalid characters");
+//         }
+//         let data = str.replace(/\s+/g, "");
+//         try {
+//             let value = Function(`"use strict"; return (${data})`)();
+
+//             if (!Number.isFinite(value)) {
+//                 throw new Error("Division by zero");
+//             }
+
+//             this.result = value;
+//             return value;
+//         } catch (err) {
+//             throw new Error("Invalid expression or division by zero");
+//         }
+//     }
+// }
+
 
 module.exports = Calculator;
