@@ -6,19 +6,36 @@
   Once you've implemented the logic, test your code by running
   - `npm run test-anagram`
 */
+
 function isAnagram(str1, str2) {
+  // if (str1.length !== str2.length) {
+  //     return false;
+  // }
 
-  if (str1.length !== str2.length) {
-      return false;
+  // function sortString(str) {
+  //     return str.toLowerCase().split('').sort().join('');
+  // }
+
+  // return sortString(str1) === sortString(str2);
+
+  if (str1.length !== str2.length) return false;
+
+  let freq = {};
+
+  for (let char of str1.toLowerCase()) {
+    freq[char] = (freq[char] || 0) + 1;
   }
 
-
-  function sortString(str) {
-      return str.toLowerCase().split('').sort().join('');
+  for (let char of str2.toLowerCase()) {
+    if (!freq[char]) return false;
+    freq[char]--;
   }
 
-
-  return sortString(str1) === sortString(str2);
+  return true;
 }
 
-module.exports = isAnagram;
+const input1 = "adcD@&e";
+const input2 = "ad@&dec";
+
+console.log(isAnagram(input1, input2));
+const input = (module.exports = isAnagram);
