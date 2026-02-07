@@ -29,6 +29,22 @@ function calculateTotalSpentByCategory(transactions) {
   }
   return ans;
 }
+
+// ? Optimized Approach Using Map data structure
+// function calculateTotalSpentByCategory(transactions) {
+//   let map = {};
+
+//   for (let { category, price } of transactions) {
+//     map[category] = (map[category] || 0) + price;
+//   }
+
+//   return Object.entries(map).map(([category, totalSpent]) => ({
+//     category,
+//     totalSpent
+//   }));
+// }
+
+
 const transactions = [
   {
     id: 1,
