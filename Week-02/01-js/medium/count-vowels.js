@@ -18,4 +18,17 @@ function countVowels(str) {
   return count;
 }
 
+// ? Better Approach BY SET 
+// function countVowels(str) {
+//   let vowels = new Set(["a", "e", "i", "o", "u"]);
+//   let count = 0;
+
+//   for (let ch of str.toLowerCase()) {
+//       if (vowels.has(ch)) {
+//           count++;
+//       }
+//   }
+//   return count;
+// }
+
 module.exports = countVowels;
