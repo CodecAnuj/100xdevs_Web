@@ -3,10 +3,19 @@
   Note: Consider both uppercase and lowercase vowels ('a', 'e', 'i', 'o', 'u').
 
   Once you've implemented the logic, test your code by running
+     Once you've implemented the logic, test your code by running
+  - "npm run test-count-vowels"
 */
 
 function countVowels(str) {
-    // Your code here
+  let count = 0;
+  for (const i of str.toLowerCase()) {
+    if ("aeiou".includes(i)) {
+      count++
+    }
+  }
+
+  return count;
 }
 
 module.exports = countVowels;
