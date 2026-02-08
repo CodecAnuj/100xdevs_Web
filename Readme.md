@@ -27,9 +27,9 @@ I am documenting every concept, code snippet, and project here.
 
 | Week | 📂 Topic / Module | 🛠️ Tech Involved | 🚦 Status |
 | :---: | :--- | :--- | :---: |
-| **01** | [**HTML & CSS**](./Week-01) | Flexbox, Grid, Semantics | ✅ Done |
-| **02** | [**JS Basics**](./Week-02) | Variables, Loops, Functions | 🚧 In Progress |
-| **03** | **JS Architecture** | Callbacks, Event Loop | ⏳ Pending |
+| **01** | [**HTML & CSS**](./Week-01-HTML-CSS) | Flexbox, Grid, Semantics | ✅ Done |
+| **02** | [**JS Basics**](./Week-02-JS-Basics-&Intermediate) | Variables, Loops, Functions | ✅ Done |
+| **03** | [**JS Architecture**](./Week-03-JS-Architecture) | Callbacks, Event Loop | 🚧 In Progress |
 | **04** | **Async JS** | Promises, Async/Await | ⏳ Pending |
 | **05** | **Node vs Browser JS** | Runtime Differences | ⏳ Pending |
 | **06** | **HTTP & Express** | REST, Middlewares | ⏳ Pending |
