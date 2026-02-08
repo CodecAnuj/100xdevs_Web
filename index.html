@@ -1,183 +1,201 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>100xdevs Assignments</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>100xdevs Assignments</title>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Delius&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Google Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Delius&display=swap" rel="stylesheet">
+    <style>
+      * {
+        box-sizing: border-box;
+      }
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+      body {
+        margin: 0;
+        font-family: "Delius", cursive;
+        background: linear-gradient(135deg, #3a95ae, #2b6f84);
+        color: #1f2933;
+      }
 
-    body {
-      margin: 0;
-      font-family: "Delius", cursive;
-      background: linear-gradient(135deg, #3a95ae, #2b6f84);
-      color: #1f2933;
-    }
+      .container {
+        max-width: 900px;
+        margin: auto;
+        padding: 32px 16px;
+      }
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 32px 16px;
-    }
+      h1 {
+        text-align: center;
+        color: #ffffff;
+        margin: 40px 0 20px;
+        letter-spacing: 1px;
+      }
 
-    h1 {
-      text-align: center;
-      color: #ffffff;
-      margin: 40px 0 20px;
-      letter-spacing: 1px;
-    }
+      .week-card {
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 24px;
+        margin-bottom: 32px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      }
 
-    .week-card {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 24px;
-      margin-bottom: 32px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-    }
-
-    .assignment {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 0;
-      border-bottom: 1px solid #e5e7eb;
-      font-size: 18px;
-    }
-
-    .assignment:last-child {
-      border-bottom: none;
-    }
-
-    .right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    a {
-      text-decoration: none;
-      background: #3a95ae;
-      color: #ffffff;
-      padding: 8px 14px;
-      border-radius: 8px;
-      font-size: 14px;
-      transition: all 0.2s ease;
-    }
-
-    a:hover {
-      background: #256f86;
-      transform: translateY(-2px);
-    }
-
-    /* Status Pills */
-    .status {
-      padding: 6px 12px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
-
-    .done {
-      background: #d1fae5;
-      color: #065f46;
-    }
-
-    .progress {
-      background: #fef3c7;
-      color: #92400e;
-    }
-
-    .pending {
-      background: #e5e7eb;
-      color: #374151;
-    }
-
-    .extra {
-      background: #ede9fe;
-      color: #5b21b6;
-    }
-
-    @media (max-width: 600px) {
       .assignment {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 0;
+        border-bottom: 1px solid #e5e7eb;
+        font-size: 18px;
+      }
+
+      .assignment:last-child {
+        border-bottom: none;
       }
 
       .right {
-        width: 100%;
-        justify-content: space-between;
+        display: flex;
+        align-items: center;
+        gap: 12px;
       }
-    }
-  </style>
-</head>
 
-<body>
-  <div class="container">
+      a {
+        text-decoration: none;
+        background: #3a95ae;
+        color: #ffffff;
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: all 0.2s ease;
+      }
 
-    <!-- WEEK 01 -->
-    <h1>Week 01</h1>
-    <div class="week-card">
-      <div class="assignment">
-        <span>Assignment 01 — Login Page of Elevenlabs</span>
-        <div class="right">
-          <span class="status done">Done</span>
-          <a href="./Week-01/Assignment-01/index.html" target="_blank">View</a>
-        </div>
-      </div>
+      a:hover {
+        background: #256f86;
+        transform: translateY(-2px);
+      }
 
-      <div class="assignment">
-        <span>Assignment 02 — Contact Page of Elevenlabs</span>
-        <div class="right">
-          <span class="status done">Done</span>
-          <a href="./Week-01/Assignment-02/index.html" target="_blank">View</a>
-        </div>
-      </div>
-    </div>
+      /* Status Pills */
+      .status {
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
 
-    <!-- WEEK 02 -->
-    <h1>Week 02</h1>
-    <div class="week-card">
-      <div class="assignment">
-        <span>Assignment 01 — JS Basics (Objects & Arrays)</span>
-        <div class="right">
-          <span class="status done">Done</span>
-          <a href="https://github.com/CodecAnuj/100xdevs_Web/tree/main/Week-02/JS-Basic-%26-Intermidiate" target="_blank">View</a>
-        </div>
-      </div>
+      .done {
+        background: #d1fae5;
+        color: #065f46;
+      }
 
-      <div class="assignment">
-        <span>Assignment 02 — JavaScript Built-in Functions</span>
-        <div class="right">
-          <span class="status done">Done</span>
-          <a href="https://github.com/CodecAnuj/100xdevs_Web/tree/main/Week-02/js-built-ins" target="_blank">View</a>
-        </div>
-    </div>
-    
-    <div class="assignment">
-        <span>Assignment 03 —  Problem solving using JavaScript</span>
-        <div class="right">
+      .progress {
+        background: #fef3c7;
+        color: #92400e;
+      }
+
+      .pending {
+        background: #e5e7eb;
+        color: #374151;
+      }
+
+      .extra {
+        background: #ede9fe;
+        color: #5b21b6;
+      }
+
+      @media (max-width: 600px) {
+        .assignment {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+
+        .right {
+          width: 100%;
+          justify-content: space-between;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- WEEK 01 -->
+      <h1>Week 01</h1>
+      <div class="week-card">
+        <div class="assignment">
+          <span>Assignment 01 — Login Page of Elevenlabs</span>
+          <div class="right">
             <span class="status done">Done</span>
-            <a href="https://github.com/CodecAnuj/100xdevs_Web/tree/main/Week-02/JS-01" target="_blank">View</a>
+            <a
+              href="./Week-01-HTML-CSS/Assignment-01/index.html"
+              target="_blank"
+              >View</a
+            >
+          </div>
+        </div>
+
+        <div class="assignment">
+          <span>Assignment 02 — Contact Page of Elevenlabs</span>
+          <div class="right">
+            <span class="status done">Done</span>
+            <a
+              href="./Week-01-HTML-CSS/Assignment-02/index.html"
+              target="_blank"
+              >View</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- WEEK 02 -->
+      <h1>Week 02</h1>
+      <div class="week-card">
+        <div class="assignment">
+          <span>Assignment 01 — JS Basics (Objects & Arrays)</span>
+          <div class="right">
+            <span class="status done">Done</span>
+            <a
+              href="https://github.com/CodecAnuj/100xdevs_Web/tree/main/Week-02-JS-Basics-%26Intermediate/01-JS-Basic-%26-Intermidiate"
+              target="_blank"
+              >View</a
+            >
+          </div>
+        </div>
+
+        <div class="assignment">
+          <span>Assignment 02 — JavaScript Built-in Functions</span>
+          <div class="right">
+            <span class="status done">Done</span>
+            <a
+              href="https://github.com/CodecAnuj/100xdevs_Web/tree/main/Week-02-JS-Basics-%26Intermediate/02-JS-Built-Ins"
+              target="_blank"
+              >View</a
+            >
+          </div>
+        </div>
+
+        <div class="assignment">
+          <span>Assignment 03 — Advance Problem solving using JavaScript</span>
+          <div class="right">
+            <span class="status done">Done</span>
+            <a
+              href="https://github.com/CodecAnuj/100xdevs_Web/tree/main/Week-02-JS-Basics-%26Intermediate/03-JS-Advance"
+              target="_blank"
+              >View</a
+            >
+          </div>
         </div>
       </div>
     </div>
-
-  </div>
-</body>
-
+  </body>
 </html>
 
 <!-- In Progress -->
