@@ -6,7 +6,9 @@
 // with `null` as the first argument and the provided value as the second argument.
 
 function delay(ms, value, callback) {
-   
+    setTimeout(() => {
+        callback(null, value);
+    }, ms);
 }
-  
+
 module.exports = delay;
