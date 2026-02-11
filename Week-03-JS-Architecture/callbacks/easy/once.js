@@ -38,6 +38,6 @@ function once(fn) {
       }
     });
   };
-}1
+}
 
 module.exports = once; /*  */
