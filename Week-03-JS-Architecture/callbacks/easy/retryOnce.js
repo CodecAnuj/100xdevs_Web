@@ -5,9 +5,20 @@
 // if the first attempt rejects.
 // If the second attempt also rejects, the error should be propagated.
 
-
 function retryOnce(fn) {
+  return function (...args) {
+    const callback = args.pop();
 
+    fn(...args, (err, result) => {
+      if (!err) {
+        return callback(null, result);
+      }
+
+      fn(...args, (err2, result2) => {
+        callback(err2, result2);
+      });
+    });
+  };
 }
 
 module.exports = retryOnce;
