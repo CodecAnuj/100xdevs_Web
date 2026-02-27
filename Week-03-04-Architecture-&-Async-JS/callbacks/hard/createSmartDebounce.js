@@ -19,6 +19,8 @@ function createSmartDebounce(worker, waitMs) {
     requestId++;
     const currentId = requestId;
 
+    // Debounced logic
+    
     // clear old timer
     clearTimeout(timer);
 
@@ -28,6 +30,8 @@ function createSmartDebounce(worker, waitMs) {
     // set new timer
     timer = setTimeout(() => {
       worker(...params, function (err, data) {
+
+        // Result Gaurd
         if (requestId == currentId) {
           done(err, data);
         }
