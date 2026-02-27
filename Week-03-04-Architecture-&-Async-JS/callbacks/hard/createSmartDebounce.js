@@ -11,6 +11,28 @@
 // - Reset the timer on repeated calls.
 // - Only the latest request may trigger the callback.
 
-function createSmartDebounce(worker, waitMs) {}
+function createSmartDebounce(worker, waitMs) {
+  let timer;
+  let requestId = 0;
 
+  return function (...args) {
+    requestId++;
+    const currentId = requestId;
+
+    // clear old timer
+    clearTimeout(timer);
+
+    const done = args[args.length - 1];
+    const params = args.slice(0, -1);
+
+    // set new timer
+    timer = setTimeout(() => {
+      worker(...params, function (err, data) {
+        if (requestId == currentId) {
+          done(err, data);
+        }
+      });
+    }, waitMs);
+  };
+}
 module.exports = createSmartDebounce;
