@@ -39,7 +39,6 @@ function createWindowAggregator(windowSize, onWindowReady) {
         const avg = sum / window.length
 
         onWindowReady(avg);
-        
     }
 }
 
