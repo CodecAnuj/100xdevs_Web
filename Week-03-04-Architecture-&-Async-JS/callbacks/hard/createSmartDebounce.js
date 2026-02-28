@@ -32,7 +32,7 @@ function createSmartDebounce(worker, waitMs) {
       worker(...params, function (err, data) {
 
         // Result Gaurd
-        if (requestId == currentId) {
+        if (requestId === currentId) {
           done(err, data);
         }
       });
