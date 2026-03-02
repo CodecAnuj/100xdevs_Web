@@ -7,6 +7,9 @@
 // 1. Use the `fs.promises` API.
 // 2. Do NOT use `fs.existsSync` (which is synchronous).
 // 3. Hint: Use `fs.promises.access()` and handle the error if it doesn't exist.
+//
+// Once you've implemented the logic, test your code by running
+//   - `npm run checkFileExists`
 
 const fs = require("fs").promises;
 
