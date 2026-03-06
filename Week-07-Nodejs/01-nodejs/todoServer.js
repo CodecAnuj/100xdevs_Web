@@ -39,11 +39,85 @@
 
   Testing the server - run `npm run test-todoServer` command in terminal
  */
-  const express = require('express');
-  const bodyParser = require('body-parser');
-  
-  const app = express();
-  
-  app.use(bodyParser.json());
-  
-  module.exports = app;
+const express = require("express");
+const bodyParser = require("body-parser");
+
+const app = express();
+
+app.use(bodyParser.json());
+
+let todos = [];
+let currentId = 1;
+
+// Read all todos
+app.get("/todos", (req, res) => {
+  res.json(todos);
+});
+
+// Read todos with specific id
+app.get("/todos/:id", (req, res) => {
+  const id = req.params.id;
+
+  const todo = todos.find((todo) => todo.id == id);
+
+  if (todo) {
+    return res.status(200).json(todo);
+  } else {
+    return res.status(404).send({ message: "todo not found" });
+  }
+});
+
+// Create todos
+app.post("/todos", (req, res) => {
+  const {title, description} = req.body;
+
+  const newTodo = {
+    id: currentId++,
+    title: title,
+    description: description,
+  };
+
+  todos.push(newTodo);
+  res.status(201).json({ id: newTodo.id });
+});
+
+// Update existing todo with specific id
+app.put("/todos/:id", (req, res) => {
+  const id = req.params.id;
+
+  const todo = todos.find((todo) => todo.id == id);
+
+  if (todo) {
+
+    const {title, description} = req.body;
+
+    todo.title = title;
+    todo.description = description;
+
+    return res.status(200).send();
+  } else {
+    return res.status(404).send({ message: "todo not found" });
+  }
+});
+
+// Delete todo with specific id
+app.delete("/todos/:id", (req, res) => {
+  const id = req.params.id;
+
+  const todo = todos.find((todo) => todo.id == id);
+
+  if (todo) {
+    todos = todos.filter((todo) => todo.id != id); // return a new array which doet not id todo
+
+    return res.status(200).send();
+  } else {
+    return res.status(404).send({ message: "todo not found" });
+  }
+});
+
+// For Non defined routes in the server
+app.use((req, res) => {
+  res.status(404).send();
+});
+
+module.exports = app;
