@@ -39,85 +39,259 @@
 
   Testing the server - run `npm run test-todoServer` command in terminal
  */
+
+// /* ---------------- in-memory todos ---------------- */
+
+// const express = require("express");
+// const bodyParser = require("body-parser");
+
+// const app = express();
+
+// app.use(bodyParser.json());
+
+// let todos = [];
+// let currentId = 1;
+
+// /* ---------------- GET all todos ---------------- */
+
+// app.get("/todos", (req, res) => {
+//   res.json(todos);
+// });
+
+// /* ---------------- GET todo by ID ---------------- */
+
+// app.get("/todos/:id", (req, res) => {
+//   const id = req.params.id;
+
+//   const todo = todos.find((todo) => todo.id == id);
+
+//   if (todo) {
+//     return res.status(200).json(todo);
+//   } else {
+//     return res.status(404).send({ message: "todo not found" });
+//   }
+// });
+
+// /* ---------------- CREATE new todo ---------------- */
+
+// app.post("/todos", (req, res) => {
+//   const { title, description } = req.body;
+
+//   const newTodo = {
+//     id: currentId++,
+//     title: title,
+//     description: description,
+//   };
+
+//   todos.push(newTodo);
+//   res.status(201).json({ id: newTodo.id });
+// });
+
+// /* ---------------- UPDATE todo ---------------- */
+
+// app.put("/todos/:id", (req, res) => {
+//   const id = req.params.id;
+
+//   const todo = todos.find((todo) => todo.id == id);
+
+//   if (todo) {
+//     const { title, description } = req.body;
+
+//     todo.title = title;
+//     todo.description = description;
+
+//     return res.status(200).send();
+//   } else {
+//     return res.status(404).send({ message: "todo not found" });
+//   }
+// });
+
+// /* ---------------- DELETE todo ---------------- */
+
+// app.delete("/todos/:id", (req, res) => {
+//   const id = req.params.id;
+
+//   const todo = todos.find((todo) => todo.id == id);
+
+//   if (todo) {
+//     todos = todos.filter((todo) => todo.id != id); // return a new array which doet not id todo
+
+//     return res.status(200).send();
+//   } else {
+//     return res.status(404).send({ message: "todo not found" });
+//   }
+// });
+
+// /* ---------------- Unknown routes ---------------- */
+
+// app.use((req, res) => {
+//   res.status(404).send();
+// });
+
+
+/* ---------------- Hard todos file based ---------------- */
+
 const express = require("express");
 const bodyParser = require("body-parser");
+const fs = require("fs");
 
 const app = express();
 
 app.use(bodyParser.json());
 
-let todos = [];
-let currentId = 1;
+/* ---------------- Read Todo Helper Function ---------------- */
 
-// Read all todos
+function readTodos(callback) {
+  fs.readFile("todos.json", "utf-8", (err, data) => {
+    if (err) {
+      return callback(err);
+    }
+
+    const todos = JSON.parse(data || "[]");
+
+    callback(null, todos);
+  });
+}
+
+/* ---------------- Write Todo Helper Function ---------------- */
+
+function writeTodos(todos, callback) {
+  fs.writeFile("todos.json", JSON.stringify(todos, null, 2), "utf-8", (err) => {
+    if (err) {
+      return callback(err);
+    }
+
+    callback(null);
+  });
+}
+
+/* ---------------- GET all todos ---------------- */
+
 app.get("/todos", (req, res) => {
-  res.json(todos);
+  readTodos((err, todos) => {
+    if (err) {
+      return res.status(500).send();
+    }
+
+    res.status(200).json(todos);
+  });
 });
 
-// Read todos with specific id
+/* ---------------- GET todo by ID ---------------- */
+
 app.get("/todos/:id", (req, res) => {
-  const id = req.params.id;
+  const id = parseInt(req.params.id);
 
-  const todo = todos.find((todo) => todo.id == id);
+  readTodos((err, todos) => {
+    if (err) {
+      return res.status(500).send();
+    }
 
-  if (todo) {
-    return res.status(200).json(todo);
-  } else {
-    return res.status(404).send({ message: "todo not found" });
-  }
+    const todo = todos.find((t) => t.id === id);
+
+    if (!todo) {
+      return res.status(404).json({ error: "Todo not found" });
+    }
+
+    res.status(200).json(todo);
+  });
 });
 
-// Create todos
+/* ---------------- CREATE new todo ---------------- */
+
 app.post("/todos", (req, res) => {
-  const {title, description} = req.body;
+  const { title, description } = req.body;
 
-  const newTodo = {
-    id: currentId++,
-    title: title,
-    description: description,
-  };
+  readTodos((err, todos) => {
+    if (err) {
+      return res.status(500).send();
+    }
 
-  todos.push(newTodo);
-  res.status(201).json({ id: newTodo.id });
+    const newTodo = {
+      id: Date.now(),
+      title,
+      description,
+    };
+
+    todos.push(newTodo);
+
+    writeTodos(todos, (err) => {
+      if (err) {
+        return res.status(500).send();
+      }
+
+      res.status(201).json({ id: newTodo.id });
+    });
+  });
 });
 
-// Update existing todo with specific id
+/* ---------------- UPDATE todo ---------------- */
+
 app.put("/todos/:id", (req, res) => {
-  const id = req.params.id;
+  const id = parseInt(req.params.id);
 
-  const todo = todos.find((todo) => todo.id == id);
+  readTodos((err, todos) => {
+    if (err) {
+      return res.status(500).send();
+    }
 
-  if (todo) {
+    const index = todos.findIndex((t) => t.id === id);
 
-    const {title, description} = req.body;
+    if (index === -1) {
+      return res.status(404).json({ error: "Todo not found" });
+    }
 
-    todo.title = title;
-    todo.description = description;
+    const { title, description } = req.body;
 
-    return res.status(200).send();
-  } else {
-    return res.status(404).send({ message: "todo not found" });
-  }
+    todos[index] = {
+      id,
+      title,
+      description,
+    };
+
+    writeTodos(todos, (err) => {
+      if (err) {
+        return res.status(500).send();
+      }
+
+      res.status(200).json(todos[index]);
+    });
+  });
 });
 
-// Delete todo with specific id
+/* ---------------- DELETE todo ---------------- */
+
 app.delete("/todos/:id", (req, res) => {
-  const id = req.params.id;
+  const id = parseInt(req.params.id);
 
-  const todo = todos.find((todo) => todo.id == id);
+  readTodos((err, todos) => {
+    if (err) {
+      return res.status(500).send();
+    }
 
-  if (todo) {
-    todos = todos.filter((todo) => todo.id != id); // return a new array which doet not id todo
+    const index = todos.findIndex((t) => t.id === id);
 
-    return res.status(200).send();
-  } else {
-    return res.status(404).send({ message: "todo not found" });
-  }
+    if (index == -1) {
+      return res.status(404).json({ error: "Todo not found" });
+    }
+
+    // remove todo
+    todos.splice(index, 1);
+
+    writeTodos(todos, (err) => {
+      if (err) {
+        return res.status(500).send();
+      }
+
+      res.status(200).send();
+    });
+  });
 });
 
-// For Non defined routes in the server
+/* ---------------- Unknown routes ---------------- */
+
 app.use((req, res) => {
-  res.status(404).send();
+  res.status(404).json({ error: "Route not found" });
 });
 
 module.exports = app;
