@@ -5,19 +5,24 @@ Your task is to create a TODO backend using the Node.js core `http` module. You 
 
 ### Routes to Implement
 
-1. **`POST /create/todo`**
+1. **`GET /`**
+   - Returns a 200 status code.
+   - Responds with the exact string: Hello World.
+   - This route is used to confirm that the server is running properly.
+
+2. **`POST /create/todo`**
    - Reads the JSON body containing `title` and `description`.
    - Creates a new Todo, assigning it an automatically incremented integer `id` (starting at 1).
    - Returns the updated list of all Todos in JSON format.
 
-2. **`GET /todos`**
+3. **`GET /todos`**
    - Returns the list of all created Todos in JSON format.
 
-3. **`GET /todo?id=XXX`**
+4. **`GET /todo?id=XXX`**
    - Returns a single Todo object matching the numeric `id` provided in the query parameters.
    - If no Todo is found for the given `id`, it should respond with a `404` status code and the JSON body `{"error": "Todo not found"}`.
 
-4. **`DELETE /todo?id=XXX`**
+5. **`DELETE /todo?id=XXX`**
    - Deletes a specific Todo matching the numeric `id` in the query parameters from the array.
    - Responds with a `200` status code upon success.
    - If the `id` does not exist, it should respond with a `404` status code and an appropriate JSON error object (e.g., `{"error": "Todo not found"}`).
