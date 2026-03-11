@@ -9,11 +9,11 @@ function promiseAll(promises) {
     let completed = 0;
 
     if (!Array.isArray(promises)) {
-      reject(new TypeError("Input must be an array"));
+      return reject(new TypeError("Input must be an array"));
     }
 
     if (promises.length === 0) {
-      resolve([]);
+      return resolve([]);
     }
 
     for (let i = 0; i < promises.length; i++) {
