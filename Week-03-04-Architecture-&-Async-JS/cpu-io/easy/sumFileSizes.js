@@ -11,6 +11,16 @@
 
 const fs = require("fs").promises;
 
-async function sumFileSizes(filePaths) {}
+async function sumFileSizes(filePaths) {
+  const stats = filePaths.map((path) => fs.stat(path));
+
+  const results = await Promise.all(stats);
+
+  const sizes = results.map((stat) => stat.size);
+
+  const total = sizes.reduce((a, b) => a + b, 0);
+
+  return total;
+}
 
 module.exports = sumFileSizes;
