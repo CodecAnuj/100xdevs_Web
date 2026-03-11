@@ -8,19 +8,19 @@
 // should pause every fixed number of iterations, allowing other
 // asynchronous tasks (like timers or I/O callbacks) to run.
 
-async function yieldedCPU(iterations) {
+async function yieldedCPU(iterations, chunkSize = 100) {
+  console.log("CPU task started");
+
   let sum = 0;
   for (let i = 0; i < iterations; i++) {
-    // CPU work
     sum += i;
 
-    if (i > 0 && i % 1000 === 0) {
-      await new Promise((resolve) => {
-        setTimeout(resolve, 0);
-      });
+    if (i > 0 && i % chunkSize === 0) {
+      await new Promise((resolve) => setTimeout(resolve, 0));
     }
   }
 
+  console.log("CPU task finished");
   return sum;
 }
 
